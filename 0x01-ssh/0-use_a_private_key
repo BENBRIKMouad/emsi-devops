@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# this scipt try to connect to a server using a perivate key passed in the pramter
 ssh -i ~/.ssh/holberton/id_rsa ubuntu@34.74.201.143
