@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # this script create a key pait with 4096 byte and witj passphrase betty,the name of the key is holberton
-ssh-keygen -f ./holberton -b 4096 -N betty
+ssh-keygen -f holberton -b 4096 -N betty
