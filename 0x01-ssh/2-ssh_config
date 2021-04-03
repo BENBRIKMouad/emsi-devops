@@ -16,7 +16,7 @@
 # ssh_config(5) man page.
 Host *
     IdentityFile ~/.ssh/holberton
-    PasswordAuthentication yes
+    PasswordAuthentication no
     SendEnv LANG LC_*
     HashKnownHosts yes
     GSSAPIAuthentication yes
