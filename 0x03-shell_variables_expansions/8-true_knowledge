@@ -1,3 +1,2 @@
-
 #!/bin/bash
 printf $(expr 128 + $TRUEKNOWLEDGE)"\n"
