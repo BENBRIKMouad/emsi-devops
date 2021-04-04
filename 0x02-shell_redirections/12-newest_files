@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -sold | head
+ls -tp | grep -v / | head -n 10
