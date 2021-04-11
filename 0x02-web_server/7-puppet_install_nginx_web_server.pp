@@ -2,23 +2,16 @@
 package { 'nginx':
   ensure => installed,
 }
-file { '/usr/share/nginx/html/index.html':
-  ensure  => 'present',
-  content => 'Holberton School',
+
+file_line { 'aaaaa':
+  ensure => 'present',
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'listen 80 default_server;',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
 }
 
-file { '/etc/nginx/sites-available/default':
-  content => ' server {
-        listen      80 default_server;
-        listen      [::]:80 default_server;
-        location / {
-            root      /usr/share/nginx/html/;
-            index     index.html;
-        }
-        location /redirect_me {                                                       
-            return 301 https://www.youtube.com/watch?v=8s22PZRXAIY;                                                 
-        }
-    }',
+file { '/var/www/html/index.html':
+  content => 'Holberton School',
 }
 
 service { 'nginx':
