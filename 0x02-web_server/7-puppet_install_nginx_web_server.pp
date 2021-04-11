@@ -1,8 +1,9 @@
+# Puppet manifest to install nginx
 package { 'nginx':
   ensure => installed,
 }
 file { '/usr/share/nginx/html/index.html':
-  ensure => 'present',
+  ensure  => 'present',
   content => 'Holberton School',
 }
 
