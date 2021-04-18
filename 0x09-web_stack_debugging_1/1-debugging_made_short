@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # service (init) must say that nginx is not running ← for real
 sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-pkill -HUP -f "/usr/sbin/nginx"
+pkill -1 -f "/usr/sbin/nginx"
