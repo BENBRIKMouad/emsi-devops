@@ -7,21 +7,16 @@ global
         user haproxy
         group haproxy
         daemon
-
-        # Default SSL material locations
         ca-base /etc/ssl/certs
         crt-base /etc/ssl/private
 
-        # Default ciphers to use on SSL-enabled listening sockets.
-        # For more information, see ciphers(1SSL). This list is from:
-        #  https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-        ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
+        ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS          
         ssl-default-bind-options no-sslv3
 
-defaults                   
-        log     global     
-        mode    http       
-        option  httplog    
+defaults
+        log     global
+        mode    http
+        option  httplog
         option  dontlognull
         timeout connect 5000
         timeout client  50000
@@ -33,26 +28,25 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
-                           
-                           
+
+
+
 frontend www-http
     bind   *:80
     reqadd X-Forwarded-Proto:\ http
     default_backend www-backend
 
 frontend www-https
-    bind   *:443 ssl crt /etc/haproxy/certs/www.bdbnb.site.pem
-    reqadd X-Forwarded-Proto:\ https
-    http-request set-header X-SSL %[ssl_fc]
+    bind   *:443 ssl crt /etc/haproxy/certs/www.benbrikmouad.tech.pem
+    reqadd X-Forwarded-Proto:\ http
     acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
     default_backend www-backend
 
 backend www-backend
-    balance  roundrobin
-    redirect scheme https if !{ ssl_fc }
-     server gc-3129-web-02-1617751021 35.237.199.163 check                                                                     
-     server gc-3129-web-01-1618037739 35.231.56.29 check 
+        balance roundrobin
+        server gc-3129-web-02-1617751021 35.237.199.163:80 check
+        server gc-3129-web-01-1618037739 35.231.56.29:80 check
 
 backend letsencrypt-backend
     server letsencrypt 127.0.0.1:54321
