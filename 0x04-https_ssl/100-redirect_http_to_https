@@ -36,7 +36,7 @@ defaults
                            
 frontend www-http
     bind   *:80
-    reqadd X-Forwarded-Proto:\ https
+    reqadd X-Forwarded-Proto:\ http
     default_backend www-backend
 
 frontend www-https
@@ -50,8 +50,8 @@ frontend www-https
 backend www-backend
     balance  roundrobin
     redirect scheme https if !{ ssl_fc }
-    server gc-3129-web-02-1617751021 35.237.199.163 check                                                                     
-    server gc-3129-web-01-1618037739 35.231.56.29 check 
+    server gc-3129-web-02-1617751021 35.237.199.163:80 check                                                                     
+    server gc-3129-web-01-1618037739 35.231.56.29:80 check 
 
 backend letsencrypt-backend
     server letsencrypt 127.0.0.1:54321
