@@ -1,0 +1,3 @@
+#!/bin/bash
+file -m holberton/bash
+file -m holberton
