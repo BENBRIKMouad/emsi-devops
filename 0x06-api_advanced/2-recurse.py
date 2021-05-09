@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""task 2"""
-
-
+"""
+Query Reddit API recursively for all hot articles of a given subreddit
+"""
+import requests
 def recurse(subreddit, hot_list=[], count=0, after=None):
     """Queries the Reddit API and returns all hot posts
     of the subreddit"""
