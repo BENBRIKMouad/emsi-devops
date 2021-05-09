@@ -8,9 +8,11 @@ import requests
 def top_ten(subreddit):
     """
         return top ten titles for a given subreddit
-        if invalid subreddit given return None 
+        return None if invalid subreddit given
     """
-    
+    # get user agent
+    # https://stackoverflow.com/questions/10606133/ -->
+    # sending-user-agent-using-requests-library-in-python
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'My User Agent 1.0'})
 
